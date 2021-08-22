@@ -29,7 +29,8 @@ class Pricing(Resource):
     def get(self, scaled_underlying_price, scaled_annual_risk_free_rate, valuation_date, expiration_date):
         #fixed-point numbers are scaled 1/100 for internal represenation within smart-contracts
         underlying_price = scaled_underlying_price / 100;
-        annual_risk_free_rate  =scaled_annual_risk_free_rate / 100;
+        #divide by 10000 since it's percentage
+        annual_risk_free_rate  =scaled_annual_risk_free_rate / 10000;
         ffaPrice = Valuate.price_forward(underlying_price, annual_risk_free_rate, valuation_date, expiration_date)
         return {"price" : int(ffaPrice)}
 
