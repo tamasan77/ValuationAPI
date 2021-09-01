@@ -18,9 +18,9 @@ class Valuate():
         * S(t): underlying asset price at valuation date
         * r(t): continuously compounded risk free interest rate on the valuation date
         """
-        t_delta_seconds = (expiration_date - valuation_date)
-        risk_free_rate = ((annual_risk_free_rate / 365) / 86400)
-        forward_price = underlying_price * math.e ** (risk_free_rate * t_delta_seconds)
+        t_delta_years = (expiration_date - valuation_date)/ (365.25 * 86400)
+        #risk_free_rate = ((annual_risk_free_rate / 365) / 86400)
+        forward_price = underlying_price * math.e ** (annual_risk_free_rate * t_delta_years)
         return forward_price
 
 
